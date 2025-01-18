@@ -23,4 +23,16 @@ def index():
     return render_template("index.html")
 
 
+# zoznam rezervacii
+@app.route("/zoznam")
+def zoznam():
+    rezervacie = []
+    try:
+        with open(REZERVACIE_SUBOR, "r", encoding="utf-8") as subor:
+            rezervacie = subor.readlines()
+    except FileNotFoundError:
+        pass  # subor neexistuje - zoznam zostane prazdny
+
+    return render_template("rezervacie.html", rezervacie=rezervacie)
+
 
