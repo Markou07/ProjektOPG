@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoznam rezervácií</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
+    <div class="container">
+        <h1>Zoznam rezervácií</h1>
+        {% if rezervacie %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dátum</th>
+                        <th>Čas</th>
+                        <th>Miesto</th>
+                        <th>Popis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rezervacia in rezervacie %}
+                        {% set udaje = rezervacia.strip().split(' ', 3) %}
+                        <tr>
+                            <td>{{ udaje[0] }}</td>
+                            <td>{{ udaje[1] }}</td>
+                            <td>{{ udaje[2] }}</td>
+                            <td>{{ udaje[3] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Žiadne rezervácie na zobrazenie.</p>
+        {% endif %}
+        <a href="/" class="link">Späť na hlavnú stránku</a>
+    </div>
 </body>
 </html>
