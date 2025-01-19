@@ -36,3 +36,5 @@ def zoznam():
     return render_template("rezervacie.html", rezervacie=rezervacie)
 
 
+if __name__ == "__main__":
+    app.run(debug=True)
